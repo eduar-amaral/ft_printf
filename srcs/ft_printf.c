@@ -3,62 +3,61 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamara- <eamara-@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eamaral- <eamaral-student.42lisboa.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 12:41:41 by eamara-           #+#    #+#             */
-/*   Updated: 2025/12/28 12:12:15 by eamara-          ###   ########.fr       */
+/*   Updated: 2025/12/28 21:09:55 by eamaral-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "ft_printf.h"
 
 static int	ft_specifier(char c, va_list args);
 
 int	ft_printf(const char *str, ...)
 {
-	int		i;
 	int		printed_chars;
+	int		result;
 	va_list	args;
 
-	if (!str)
-		return (0);
-	i = 0;
 	printed_chars = 0;
 	va_start(args, str);
-	while (str[i])
+	while (*str)
 	{
-		if (str[i] == '%')
-			printed_chars += ft_specifier(str[++i], args);
+		if (*str == '%')
+		{
+			result = ft_specifier(*(++str), args);
+				if (result == -1)
+					return (va_end(args), -1);
+			printed_chars += result;
+		}
 		else
-			printed_chars += write(1, &str[i], 1);
-		i++;
+		{
+			if (write(1, str, 1) == -1)
+					return (va_end(args), -1);
+			printed_chars++;
+		}
+		str++;
 	}
 	va_end(args);
 	return (printed_chars);
 }
 
-static int	ft_specifier(char c, va_list args)
+static int	ft_specifier(const char c, va_list args)
 {
-	int		printed_chars;
-	char	ch;
-
-	printed_chars = 0;
 	if (c == 'c')
-	{
-		ch = va_arg(args, int);
-		printed_chars += write(1, &ch, 1);
-	}
+		return (ft_printf_char(va_arg(args, int)));
 	else if (c == 's')
-		printed_chars += ft_printf_str(args);
+		return(ft_printf_str(va_arg(args, char *)));
 	else if (c == '%')
-		printed_chars += write(1, "%", 1);
+		return (ft_printf_char('%'));
 	else if (c == 'd' || c == 'i')
-		printed_chars += ft_printf_nbr(args);
+		return (ft_printf_nbr(va_arg(args, int)));
 	else if (c == 'u')
-		printed_chars += ft_printf_unsigned(args);
+		return (ft_printf_nbr(va_arg(args, unsigned int)));
 	else if (c == 'x' || c == 'X')
-		printed_chars += ft_printf_hex(args, c);
+		return (ft_printf_hex(va_arg(args, unsigned int), c));
 	else if (c == 'p')
-		printed_chars += ft_printf_pointer(args);
-	return (printed_chars);
+		return (ft_printf_pointer(va_arg(args, unsigned long)));
+	return (-1);
 }

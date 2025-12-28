@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eamara- <eamara-@student.42.fr>            +#+  +:+       +#+         #
+#    By: eamaral- <eamaral-student.42lisboa.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 15:11:43 by eamara-           #+#    #+#              #
-#    Updated: 2025/12/28 00:57:39 by eamara-          ###   ########.fr        #
+#    Updated: 2025/12/28 19:01:19 by eamaral-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,7 @@ SRC_DIR = srcs
 
 # SOURCE FILES
 SRCS = $(SRC_DIR)/ft_printf.c \
-		$(SRC_DIR)/ft_printf_functions.c \
-		$(SRC_DIR)/ft_printf_helpers.c
+		$(SRC_DIR)/ft_printf_functions.c
 
 # OBJECT FILES
 OBJS = $(SRCS:.c=.o)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamara- <eamara-@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eamaral- <eamaral-student.42lisboa.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 21:01:41 by eamara-           #+#    #+#             */
-/*   Updated: 2025/12/28 00:49:23 by eamara-          ###   ########.fr       */
+/*   Updated: 2025/12/28 16:00:55 by eamaral-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ static void	test_specifiers(unsigned int num, void *ptr, char *str)
 {
 	int				printed_chars[8];
 	char			c;
-	int				i[0];
+	int				i;
 
-	i[0] = 0;
+	i = 0;
 	c = 'A';
 	ft_printf("|================================|\n");
 	ft_printf("|        SPECIFIER TESTS         |\n");
@@ -48,11 +48,11 @@ static void	test_specifiers(unsigned int num, void *ptr, char *str)
 	printed_chars[5] = ft_printf("6° String (%%s): %s\n", str);
 	printed_chars[6] = ft_printf("7° Character (%%c): %c\n", c);
 	ft_printf("\nSummary of printed characters:\n");
-	while (i[0] < 7)
+	while (i < 7)
 	{
-		ft_printf("Test %d printed %d characters.\n", i[0] + 1,
-			printed_chars[i[0]]);
-		i[0]++;
+		ft_printf("Test %d printed %d characters.\n", i + 1,
+			printed_chars[i]);
+		i++;
 	}
 }
 

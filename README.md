@@ -91,11 +91,6 @@ The code is organized in 3 files:
   - `ft_printf_hex()` for `%x` and `%X`
   - `ft_printf_pointer()` for `%p`
 
-- **ft_printf_helpers.c** - Contains helper functions that do the actual work: 
-  - `ft_printf_nbr_helper()` - prints numbers with recursion
-  - `ft_printf_unsigned_helper()` - prints unsigned numbers with recursion
-  - `ft_printf_hex_helper()` - prints hexadecimal with recursion
-
 **Data structure:**
 
 I use `va_list` (from `<stdarg.h>`) to handle many arguments. This is the normal way in C to make functions that can take different numbers of arguments.
@@ -130,7 +125,6 @@ This makes the code easier to read and maintain.
 - `man write` - How to write to the screen
 
 **Tutorials:**
-- [42 Docs - ft_printf](https://harm-smits.github.io/42docs/projects/ft_printf)
 - [Variadic Functions in C](https://www.geeksforgeeks.org/variadic-functions-in-c/)
 
 **AI Usage:**
