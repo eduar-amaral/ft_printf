@@ -62,6 +62,15 @@ int main(void)
 }
 ```
 
+ **Quick Test :**
+
+Download the test file:
+
+```bash
+# Using curl
+curl -O https://raw.githubusercontent.com/eduar-amaral/ft_printf/main/main.c
+```
+
 ---
 
 ## Algorithm and Data Structure

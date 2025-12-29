@@ -6,7 +6,7 @@
 /*   By: eamaral- <eamaral-student.42lisboa.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 13:31:50 by eamara-           #+#    #+#             */
-/*   Updated: 2025/12/28 21:22:05 by eamaral-         ###   ########.fr       */
+/*   Updated: 2025/12/29 15:25:39 by eamaral-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	ft_printf_nbr(long nb)
 		printed_chars += result;
 	}
 	result = ft_printf_char((nb % 10) + '0');
-		if (result == -1)
-			return (-1);
+	if (result == -1)
+		return (-1);
 	printed_chars += result;
 	return (printed_chars);
 }

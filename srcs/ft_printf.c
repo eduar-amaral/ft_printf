@@ -6,7 +6,7 @@
 /*   By: eamaral- <eamaral-student.42lisboa.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 12:41:41 by eamara-           #+#    #+#             */
-/*   Updated: 2025/12/28 21:09:55 by eamaral-         ###   ########.fr       */
+/*   Updated: 2025/12/29 17:38:26 by eamaral-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_printf(const char *str, ...)
 	int		result;
 	va_list	args;
 
+	if (!str)
+		return (-1);
 	printed_chars = 0;
 	va_start(args, str);
 	while (*str)
@@ -27,20 +29,17 @@ int	ft_printf(const char *str, ...)
 		if (*str == '%')
 		{
 			result = ft_specifier(*(++str), args);
-				if (result == -1)
-					return (va_end(args), -1);
+			if (result == -1)
+				return (va_end(args), -1);
 			printed_chars += result;
 		}
+		else if (write(1, str, 1) == -1)
+			return (va_end(args), -1);
 		else
-		{
-			if (write(1, str, 1) == -1)
-					return (va_end(args), -1);
 			printed_chars++;
-		}
 		str++;
 	}
-	va_end(args);
-	return (printed_chars);
+	return (va_end(args), printed_chars);
 }
 
 static int	ft_specifier(const char c, va_list args)
@@ -48,7 +47,7 @@ static int	ft_specifier(const char c, va_list args)
 	if (c == 'c')
 		return (ft_printf_char(va_arg(args, int)));
 	else if (c == 's')
-		return(ft_printf_str(va_arg(args, char *)));
+		return (ft_printf_str(va_arg(args, char *)));
 	else if (c == '%')
 		return (ft_printf_char('%'));
 	else if (c == 'd' || c == 'i')
